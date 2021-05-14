@@ -10,4 +10,7 @@ export default {
         return axios.get(BASEURL + "?name=" + name);
     }
     // TODO: Figure out how to sort
+    // sortEmployeeByName: function () {
+    //     return axios.get(BASEURL)
+    // }
 }
