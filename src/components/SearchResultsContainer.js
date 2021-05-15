@@ -1,26 +1,39 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
-import ResultList from "./ResultList";
+import ResultsList from "./ResultsList";
 import API from "../utils/API";
 
 class SearchResultsContainer extends Component {
     state = {
         search: "",
+        order: "descend",
         results: []
     };
 
     //Display all employees on page load
-    //TODO: What do I put in "" to display all?
     componentDidMount() {
-        this.searchEmployee("");
+        this.getEmployees();
     };
+
+    getEmployees = async() => {
+      let allEmployees = await API.getEmployees()
+      console.log(allEmployees)
+      this.setState({results: allEmployees.data.results})
+    };
+    
 
     //search employee API based on user input
     searchEmployee = name => {
-        API.search(name)
-        .then(res => this.setState({ results: res.data.data}))
-        .catch(err => console.log(err));
+      //TODO: filter method
+        // API.getEmployeeByName(name)
+        // .then(res => console.log(res))
+        // // .then(res => this.setState({ results: res.data.data}))
+        // .catch(err => console.log(err));
     };
+
+    sortEmployee = heading => {
+
+    }
 
     //update info displayed on page
     handleInputChange = event => {
@@ -45,7 +58,7 @@ class SearchResultsContainer extends Component {
               handleFormSubmit={this.handleFormSubmit}
               handleInputChange={this.handleInputChange}
             />
-            <ResultList results={this.state.results} />
+            <ResultsList results={this.state.results} />
           </div>
         );
       }
