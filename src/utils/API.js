@@ -6,13 +6,14 @@ export default {
     getEmployees: function (){
         return axios.get(BASEURL + "?results=100");
     },
+
+    //filter
     getEmployeeByName: function (name){
         return axios.get(BASEURL + "?name=" + name);
     },
 
-    filterEmployeeByLocation
-    // TODO: Figure out how to sort
-    // sortEmployeeByName: function () {
-    //     return axios.get(BASEURL)
+    //sort
+    // sortEmployees: function (){
+    //     return axios.get(BASEURL + "?results=100");
     // }
-}
+};

@@ -8,7 +8,8 @@ function ResultsList(props) {
     <th>Last Name</th>
     <th>Email Address</th>
     <th>Cell Phone Number</th>
-    <th>Location</th>
+    <th>State</th>
+    <th>Country</th>
   </tr>
   {props.results.map(employee => (
     <tr>
@@ -16,7 +17,8 @@ function ResultsList(props) {
       <td>{employee.name.last}</td>
       <td>{employee.email}</td>
       <td>{employee.cell}</td>
-      <td>{employee.location}</td>
+      <td>{employee.location.state}</td>
+      <td>{employee.location.country}</td>
   </tr>
   ))}
   

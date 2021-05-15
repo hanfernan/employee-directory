@@ -15,6 +15,7 @@ class SearchResultsContainer extends Component {
         this.getEmployees();
     };
 
+    //Call all employees from the API
     getEmployees = async() => {
       let allEmployees = await API.getEmployees()
       console.log(allEmployees)
@@ -23,20 +24,20 @@ class SearchResultsContainer extends Component {
     
 
     //search employee API based on user input
-    searchEmployee = name => {
+    // searchEmployee = name => {
       //TODO: filter method
         // API.getEmployeeByName(name)
         // .then(res => console.log(res))
         // // .then(res => this.setState({ results: res.data.data}))
         // .catch(err => console.log(err));
-    };
+    // };
 
-    sortEmployee = heading => {
+    // sortEmployee = heading => {
 
-    }
+    // }
 
     //update info displayed on page
-    handleInputChange = event => {
+    handleSearch = event => {
         const name = event.target.name;
         const value = event.target.value;
         this.setState({
@@ -50,13 +51,14 @@ class SearchResultsContainer extends Component {
         this.searchEmployee(this.state.search);
       };
 
+      //props
       render() {
         return (
           <div>
             <SearchForm
               search={this.state.search}
               handleFormSubmit={this.handleFormSubmit}
-              handleInputChange={this.handleInputChange}
+              handleSearch={this.handleSearch}
             />
             <ResultsList results={this.state.results} />
           </div>
