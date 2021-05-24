@@ -1,76 +1,54 @@
 import React, { Component } from "react";
-import SearchForm from "./SearchForm";
-import ResultsList from "./ResultsList";
+import SearchResults from "./SearchResults";
+import Nav from "./Nav"
 import API from "../utils/API";
 
-class SearchResultsContainer extends Component {
+export default class DataArea extends Component {
   state = {
-    search: "",
-    order: "descend",
-    results: []
-  };
-
-  //Display all employees on page load
-  componentDidMount() {
-    this.getEmployees();
-  };
-
-  //Call all employees from the API
-  getEmployees = async () => {
-    let allEmployees = await API.getEmployees()
-    console.log(allEmployees)
-    this.setState({ results: allEmployees.data.results })
-  };
-
-  
-  // searchEmployee = name => {
-  //   API.getEmployeeByName(name)
-  //     .then(res => console.log(res))
-  //     // .then(res => this.setState({ results: res.data.data}))
-  //     .catch(err => console.log(err));
-  // };
-
-  //search employee API based on user input
-  //update info displayed on page
-  searchEmployee = event => {
-    const name = event.target.name.first;
-    const value = event.target.value;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  // When the search form is submitted, search the Employee API for `this.state.search`
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.searchEmployee(this.state.search);
-  };
-  // sortEmployee = heading => {
-
-  // }
-
-  //when sort button is clicked
-  // handleSort = event => {
-  //   event.preventDefault();
-  //   this.sortEmployee(this.state.order)
-  // }
-
-  //props
-  render() {
-    return (
-      <div>
-        <SearchForm
-          search={this.state.search}
-          handleFormSubmit={this.handleFormSubmit}
-          handleSearch={this.handleSearch}
-        />
-        <ResultsList results={this.state.results} />
-      </div>
-    );
+    search: [{}],
+    results: [{}]
   }
 
-};
+  headings = [
+    { name: "Name", width: "10%" },
+    { name: "Phone", width: "20%" },
+    { name: "Email", width: "20%" },
+    { name: "Location", width: "10%" }
+  ]
 
+  search = event => {
+    console.log(event.target.value);
+    const filter = event.target.value;
+    const filteredList = this.state.search.filter(item => {
+      let values = Object.values(item)
+        .join("")
+        .toLowerCase();
+      return values.indexOf(filter.toLowerCase()) !== -1;
+    });
+    this.setState({ results: filteredList });
+  }
 
+  componentDidMount() {
+    API.getEmployees().then(results => {
+      console.log(results)
+      this.setState({
+        search: results.data.results,
+        results: results.data.results
+      });
+    });
+  }
 
-export default SearchResultsContainer;
+  render() {
+    return (
+      <>
+        <Nav search={this.search} />
+        <div>
+          <SearchResults
+            headings={this.headings}
+            search={this.state.results}
+          />
+        </div>
+      </>
+    );
+  }
+}

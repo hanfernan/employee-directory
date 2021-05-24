@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## About
 
-This app allows a user to view an entire employee directory with data pulled from the [Random User Generator AP](https://randomuser.me/) . Eventually, this app will also allow the user to search and sort employees. This app was built with React. 
+This app allows a user to view an entire employee directory with data pulled from the [Random User Generator AP](https://randomuser.me/) . This app also allows users to search for employees. This app was built with React. 
 ## Available Scripts
 
 In the project directory, you can run:
