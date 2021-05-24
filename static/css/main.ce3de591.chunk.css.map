@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,KACI,WACJ,CACA,QACI,WAAY,CACZ,WACJ,CAEA,WACI,iBACJ","file":"main.ce3de591.chunk.css","sourcesContent":[".app {\r\n    margin: 20px;\r\n}\r\n.header {\r\n    margin: 10px;\r\n    padding: 3px;\r\n}\r\n\r\n.header h1 {\r\n    text-align: center;\r\n}\r\n\r\n"]}
